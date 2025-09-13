@@ -1,7 +1,8 @@
 import TrelloConfigForm from "./components/TrelloConfigForm";
 // import TrelloConfigList from "./components/TrelloConfigList";
-import WhatsAppSessionStarter from "./components/WhatsAppSessioStarter";
-import SessionStatus from "./components/SessionStatus";
+// import WhatsAppSessionStarter from "./components/WhatsAppSessioStarter";
+import SessionController from "./components/SessionController";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -9,8 +10,9 @@ function App() {
       <h1>ZapFlow Dashboard</h1>
       <TrelloConfigForm onCreated={() => {}} />
       {/* <TrelloConfigList /> */}
-      <WhatsAppSessionStarter />
-      <SessionStatus />
+      {/* <WhatsAppSessionStarter /> */}
+      <SessionController />
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
     </div>
   );
 }
