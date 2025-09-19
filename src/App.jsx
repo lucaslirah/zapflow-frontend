@@ -8,7 +8,7 @@ import "./App.css";
 function App() {
   return (
     <div className="dashboard">
-      <header className="dashboard-header">
+      <header className="dashboard-header animate-in">
         <h1>ZapFlow Dashboard ⚡</h1>
         <p>Gerencie suas sessões WhatsApp e configurações do Trello</p>
       </header>

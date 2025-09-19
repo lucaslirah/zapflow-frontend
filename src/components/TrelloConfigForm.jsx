@@ -27,7 +27,7 @@ export default function TrelloConfigForm({ onCreated }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="form-config animate-in" onSubmit={handleSubmit}>
       {Object.keys(form).map((field) => (
         <input
           key={field}
@@ -35,9 +35,10 @@ export default function TrelloConfigForm({ onCreated }) {
           value={form[field]}
           onChange={handleChange}
           placeholder={field}
+          className="form-input"
         />
       ))}
-      <button type="submit">Salvar Configuração</button>
+      <button type="submit"className="form-button animate-in animate-delay-4">Salvar Configuração</button>
     </form>
   );
 }

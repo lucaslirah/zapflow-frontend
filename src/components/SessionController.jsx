@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import api from "../services/api";
 import { toast } from "react-toastify";
+import { FaPlay, FaSyncAlt, FaSearch, FaStop } from "react-icons/fa";
+import "./SessionController.css";
 // import { QRCodeCanvas } from "qrcode.react";
 
 export default function SessionController() {
@@ -111,7 +113,6 @@ export default function SessionController() {
       setLoading(false);
     }
   };
-  
 
   // Verificação automática do status enquanto estiver "starting"
   useEffect(() => {
@@ -125,49 +126,53 @@ export default function SessionController() {
   }, [polling, status]);
 
   return (
-    <div style={{ marginTop: "30px" }}>
-      <h3>Controle de Sessão WhatsApp</h3>
+    <div className="session-controller animate-in">
       <input
+        className="form-input animate-in animate-delay-1"
         placeholder="Session ID"
         value={sessionId}
         onChange={(e) => setSessionId(e.target.value)}
       />
       <input
+        className="form-input animate-in animate-delay-2"
         placeholder="Nome da Configuração Trello"
         value={configName}
         onChange={(e) => setConfigName(e.target.value)}
       />
-      <div style={{ marginTop: "10px" }}>
-        <button onClick={resetSession}>Resetar Sessão</button>
-        <button onClick={startSession} style={{ marginLeft: "10px" }}>
+
+      <div className="button-group">
+        <button className="form-button" onClick={resetSession}>
+          <FaSyncAlt style={{ marginRight: "6px" }} />
+          Resetar Sessão
+        </button>
+        <button className="form-button" onClick={startSession}>
+          <FaPlay style={{ marginRight: "6px" }} />
           Iniciar Sessão
         </button>
-        <button onClick={checkStatus} style={{ marginLeft: "10px" }}>
+        <button className="form-button" onClick={checkStatus}>
+          <FaSearch style={{ marginRight: "6px" }} />
           Verificar Status
         </button>
         {/*Se a sessão estiver conectada, exibe o botão de parar*/}
         {/* {status === "connected" && (
           <button onClick={stopSession} style={{ marginLeft: "10px" }}>
+            <FaStop style={{ marginRight: "6px" }} />
             Parar Sessão
           </button>
         )} */}
       </div>
 
+      {/* Badge de status */}
       {status && (
-        <p style={{ marginTop: "10px" }}>
+        <p className={`status-text badge-${status}`}>
           Status atual: <strong>{status}</strong>
         </p>
       )}
 
       {qr && (
-        <div style={{ marginTop: "20px" }}>
+        <div className="qr-container fade-in">
           <p>Escaneie o QR abaixo para conectar:</p>
-          {/* Apenas exiba a imagem que o backend enviou */}
-          <img
-            src={qr}
-            alt="QR Code para conectar ao WhatsApp"
-            style={{ width: "200px", height: "200px" }}
-          />
+          <img src={qr} alt="QR Code" className="qr-image" />
         </div>
       )}
     </div>
