@@ -1,0 +1,36 @@
+.dashboard {
+  font-family: "Segoe UI", sans-serif;
+  padding: 20px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.dashboard-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.dashboard-section {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-section h2 {
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}

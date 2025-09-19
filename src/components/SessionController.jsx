@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../services/api";
 import { toast } from "react-toastify";
-import { QRCodeCanvas } from "qrcode.react";
+// import { QRCodeCanvas } from "qrcode.react";
 
 export default function SessionController() {
   const [sessionId, setSessionId] = useState("");
@@ -27,6 +27,25 @@ export default function SessionController() {
       toast.error("Erro ao resetar sessão.");
     }
   };
+
+  // //parar sessão
+  // const stopSession = async () => {
+  //   if (!sessionId) {
+  //     toast.warn("Informe o Session ID para parar.");
+  //     return;
+  //   }
+
+  //   try {
+  //     await api.post(`/sessions/stop/${sessionId}`);
+  //     toast.success("Sessão parada com sucesso!");
+  //     setStatus("disconnected");
+  //     setQr(null);
+  //     setPolling(false); // para verificação automática
+  //   } catch (err) {
+  //     console.error("Erro ao parar sessão:", err);
+  //     toast.error("Erro ao parar sessão.");
+  //   }
+  // };
 
   const startSession = async () => {
     if (!sessionId || !configName) {
@@ -92,6 +111,7 @@ export default function SessionController() {
       setLoading(false);
     }
   };
+  
 
   // Verificação automática do status enquanto estiver "starting"
   useEffect(() => {
@@ -125,6 +145,12 @@ export default function SessionController() {
         <button onClick={checkStatus} style={{ marginLeft: "10px" }}>
           Verificar Status
         </button>
+        {/*Se a sessão estiver conectada, exibe o botão de parar*/}
+        {/* {status === "connected" && (
+          <button onClick={stopSession} style={{ marginLeft: "10px" }}>
+            Parar Sessão
+          </button>
+        )} */}
       </div>
 
       {status && (
@@ -136,7 +162,12 @@ export default function SessionController() {
       {qr && (
         <div style={{ marginTop: "20px" }}>
           <p>Escaneie o QR abaixo para conectar:</p>
-          <QRCodeCanvas value={qr} size={200} />
+          {/* Apenas exiba a imagem que o backend enviou */}
+          <img
+            src={qr}
+            alt="QR Code para conectar ao WhatsApp"
+            style={{ width: "200px", height: "200px" }}
+          />
         </div>
       )}
     </div>
