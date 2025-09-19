@@ -3,6 +3,7 @@ import api from "../services/api";
 import { toast } from "react-toastify";
 import { FaPlay, FaSyncAlt, FaSearch, FaStop } from "react-icons/fa";
 import "./SessionController.css";
+import TrelloConfigSearch from "./TrelloConfigSearch";
 // import { QRCodeCanvas } from "qrcode.react";
 
 export default function SessionController() {
@@ -116,6 +117,19 @@ export default function SessionController() {
 
   // Verificação automática do status enquanto estiver "starting"
   useEffect(() => {
+    const ultimaConfig = localStorage.getItem("ultimaConfigTrello");
+    const ultimoSession = localStorage.getItem("ultimoSessionId");
+
+    if (ultimaConfig) {
+      setConfigName(ultimaConfig);
+      toast.info(`Última configuração carregada: ${ultimaConfig}`);
+    }
+
+    if (ultimoSession) {
+      setSessionId(ultimoSession);
+      toast.info(`Último Session ID carregado: ${ultimoSession}`);
+    }
+
     if (polling && status === "starting") {
       const interval = setInterval(() => {
         checkStatus();
@@ -127,11 +141,21 @@ export default function SessionController() {
 
   return (
     <div className="session-controller animate-in">
+      <TrelloConfigSearch
+        onFound={(config) => {
+          setConfigName(config.name);
+          toast.info(`Usando board: ${config.boardId}`);
+        }}
+      />
       <input
         className="form-input animate-in animate-delay-1"
         placeholder="Session ID"
         value={sessionId}
-        onChange={(e) => setSessionId(e.target.value)}
+        onChange={(e) => {
+          const value = e.target.value;
+          setSessionId(value);
+          localStorage.setItem("ultimoSessionId", value);
+        }}
       />
       <input
         className="form-input animate-in animate-delay-2"
