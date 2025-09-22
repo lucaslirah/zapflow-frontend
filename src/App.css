@@ -1,8 +1,21 @@
+body {
+  display: flex; /* Ativa o Flexbox */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  background-color: #f4f6f8; /* Mova a cor de fundo para cá */
+  color: rgba(47, 43, 61, 0.68);
+  input{
+    color: rgba(47, 43, 61, 0.8);
+  }
+}
+
 .dashboard {
   font-family: "Segoe UI", sans-serif;
+  width: 90%; /* Define uma largura máxima para o conteúdo */
+  max-width: 1200px; /* Impede que fique largo demais em telas grandes */
   padding: 30px;
-  background-color: #f4f6f8;
-  color: #333;
+  box-sizing: border-box;
+  margin: 20px auto; /* Centraliza horizontalmente e adiciona margem superior/inferior */
 }
 
 .dashboard-header {
@@ -35,6 +48,10 @@
   padding-bottom: 5px;
 }
 
+input::placeholder{
+  font-size: .8rem;
+}
+
 /* Formulários e campos */
 .form-config,
 .session-controller {
@@ -51,19 +68,23 @@
   background-color: #fefefe;
 }
 
-.form-button {
+.form-button,
+.form-button-secondary {
   padding: 10px;
-  background-color: #2e7d32;
+  /* background-color: #2e7d32; */
+  background: linear-gradient(72.47deg, rgb(1, 122, 17) 22.16%, rgba(1, 122, 17, 0.7) 76.47%);
   color: white;
   border: none;
   border-radius: 6px;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background 1s;
 }
 
-.form-button:hover {
-  background-color: #1b5e20;
+.form-button:hover,
+.form-button-secondary:hover {
+  /* background-color: #1b5e20; */
+  background: linear-gradient(72.47deg, rgb(1, 100, 17) 22.16%, rgba(1, 100, 17, 0.7) 76.47%);
 }
 
 .button-group {

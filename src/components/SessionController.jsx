@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import api from "../services/api";
 import { toast } from "react-toastify";
-import { FaPlay, FaSyncAlt, FaSearch, FaStop } from "react-icons/fa";
+import { FaPlay, FaSyncAlt, FaSearch, FaStop, FaSave, FaTrash } from "react-icons/fa";
 import "./SessionController.css";
 import TrelloConfigSearch from "./TrelloConfigSearch";
 // import { QRCodeCanvas } from "qrcode.react";
@@ -13,6 +13,26 @@ export default function SessionController() {
   const [qr, setQr] = useState(null);
   const [loading, setLoading] = useState(false);
   const [polling, setPolling] = useState(false);
+
+  // Função para limpar o histórico (sem alterações)
+  const clearHistory = () => {
+    localStorage.removeItem("ultimoSessionId");
+    localStorage.removeItem("ultimaConfigTrello");
+    setSessionId("");
+    setConfigName("");
+    toast.info("Histórico de sessão limpo!");
+  };
+  // NOVO: Função para salvar os dados no histórico manualmente
+  const saveHistory = () => {
+    if (!sessionId && !configName) {
+      toast.warn("Preencha ao menos um campo para salvar.");
+      return;
+    }
+    // Salva os valores atuais do estado no localStorage
+    localStorage.setItem("ultimoSessionId", sessionId);
+    localStorage.setItem("ultimaConfigTrello", configName);
+    toast.success("Dados da sessão salvos para o próximo acesso!");
+  };
 
   const resetSession = async () => {
     if (!sessionId) {
@@ -115,6 +135,24 @@ export default function SessionController() {
     }
   };
 
+  // Este useEffect agora serve apenas para CARREGAR os dados ao iniciar
+  useEffect(() => {
+    const ultimoSession = localStorage.getItem("ultimoSessionId");
+    const ultimaConfig = localStorage.getItem("ultimaConfigTrello");
+
+    if (ultimoSession) {
+      setSessionId(ultimoSession);
+    }
+    if (ultimaConfig) {
+      setConfigName(ultimaConfig);
+    }
+
+    if(ultimoSession || ultimaConfig) {
+        toast.info("Dados da última sessão carregados.");
+    }
+
+  }, []); // Array de dependências vazio para rodar apenas uma vez
+
   // Verificação automática do status enquanto estiver "starting"
   useEffect(() => {
     const ultimaConfig = localStorage.getItem("ultimaConfigTrello");
@@ -147,15 +185,12 @@ export default function SessionController() {
           toast.info(`Usando board: ${config.boardId}`);
         }}
       />
+      <h3>Controle de Sessão WhatsApp</h3>
       <input
         className="form-input animate-in animate-delay-1"
         placeholder="Session ID"
         value={sessionId}
-        onChange={(e) => {
-          const value = e.target.value;
-          setSessionId(value);
-          localStorage.setItem("ultimoSessionId", value);
-        }}
+        onChange={(e) => setSessionId(e.target.value)}
       />
       <input
         className="form-input animate-in animate-delay-2"
@@ -163,17 +198,16 @@ export default function SessionController() {
         value={configName}
         onChange={(e) => setConfigName(e.target.value)}
       />
-
       <div className="button-group">
-        <button className="form-button" onClick={resetSession}>
+        <button className="form-button animate-in" onClick={resetSession}>
           <FaSyncAlt style={{ marginRight: "6px" }} />
           Resetar Sessão
         </button>
-        <button className="form-button" onClick={startSession}>
+        <button className="form-button animate-in" onClick={startSession}>
           <FaPlay style={{ marginRight: "6px" }} />
           Iniciar Sessão
         </button>
-        <button className="form-button" onClick={checkStatus}>
+        <button className="form-button animate-in" onClick={checkStatus}>
           <FaSearch style={{ marginRight: "6px" }} />
           Verificar Status
         </button>
@@ -184,6 +218,15 @@ export default function SessionController() {
             Parar Sessão
           </button>
         )} */}
+        {/* NOVO: Botões de gerenciamento de histórico */}
+        <button className="form-button-secondary animate-in" onClick={saveHistory}>
+            <FaSave style={{ marginRight: "6px" }} />
+            Salvar Dados
+        </button>
+        <button className="form-button-secondary animate-in" onClick={clearHistory}>
+          <FaTrash style={{ marginRight: "6px" }} />
+          Limpar
+        </button>
       </div>
 
       {/* Badge de status */}
