@@ -1,70 +1,105 @@
-# Getting Started with Create React App
+# ⚛️ ZapFlow - Frontend Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![GitHub language count](https://img.shields.io/github/languages/count/lucaslirah/zapflow-frontend?color=%2361DAFB)
+![GitHub top language](https://img.shields.io/github/languages/top/lucaslirah/zapflow-frontend?color=%2361DAFB)
+![GitHub last commit](https://img.shields.io/github/last-commit/lucaslirah/zapflow-frontend)
+![License](https://img.shields.io/github/license/lucaslirah/zapflow-frontend)
 
-## Available Scripts
+Uma interface web moderna e reativa, construída com React.js, para consumir a API do ZapFlow e gerenciar sessões do WhatsApp de forma visual e intuitiva.
 
-In the project directory, you can run:
+> **Este é o repositório do Frontend.** O Backend (API) que esta aplicação consome está em um repositório separado.
+>
+> ➡️ **[Acesse o repositório do Backend aqui](https://github.com/lucaslirah/zapflow_project)**
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📸 Demonstração
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+A interface do ZapFlow Dashboard oferece um painel de controle centralizado para todas as operações de automação do WhatsApp, com feedback visual em tempo real para o usuário.
 
-### `npm test`
+![Demonstração do ZapFlow](https://i.imgur.com/3ffbea.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+> A aplicação foi desenvolvida com **React.js** e se comunica com um backend robusto em **Node.js**, que persiste os dados em um banco de dados **PostgreSQL** na **AWS RDS**, garantindo alta performance e escalabilidade.
 
-### `npm run build`
+## ✨ Funcionalidades
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-   **Interface Intuitiva:** Formulários claros para gerenciar configurações do Trello e iniciar sessões do WhatsApp.
+-   **Visualização de QR Code:** Exibe o QR Code de autenticação diretamente na tela para facilitar a conexão.
+-   **Feedback em Tempo Real:** Utiliza `react-toastify` para fornecer notificações instantâneas sobre o status das operações (sucesso, erro, aviso).
+-   **Gerenciamento de Estado Local:** Persiste o último ID de sessão e configuração utilizados no `localStorage` do navegador, permitindo salvar e limpar os dados para agilizar o uso recorrente.
+-   **Animações e Transições:** Efeitos sutis de CSS para uma experiência de usuário mais fluida e agradável.
+-   **Design Responsivo:** A interface se adapta a diferentes tamanhos de tela, permitindo o gerenciamento a partir de desktops ou dispositivos móveis.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 💻 Tecnologias e Ferramentas
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+O frontend foi construído com um ecossistema moderno de ferramentas JavaScript, focando em uma experiência de desenvolvimento produtiva e uma aplicação final performática.
 
-### `npm run eject`
+| Tecnologia | Descrição |
+| :--- | :--- |
+| **React.js** | Biblioteca para a construção de interfaces de usuário reativas e componentizadas. |
+| **React Hooks** | Utilizados para gerenciamento de estado (`useState`) e ciclo de vida (`useEffect`) nos componentes. |
+| **Axios** | Cliente HTTP para realizar requisições à API do backend de forma simples e segura. |
+| **React Toastify** | Biblioteca para a exibição de notificações (toasts) elegantes e customizáveis. |
+| **React Icons** | Pacote que inclui milhares de ícones populares para uso nos componentes. |
+| **CSS3** | Estilização feita com CSS puro, utilizando classes bem definidas e animações. |
+| **Vite / Create React App**| Ferramenta de build e servidor de desenvolvimento para aplicações React. |
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 💡 Arquitetura e Boas Práticas
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+-   **Arquitetura Baseada em Componentes:** A interface é dividida em componentes reutilizáveis e de responsabilidade única (ex: `SessionController`, `TrelloConfigForm`), facilitando a manutenção e escalabilidade do código.
+-   **Serviço de API Centralizado:** As configurações do `Axios` e a comunicação com o backend estão isoladas em um módulo de serviço (`src/services/api.js`), desacoplando a lógica de UI da lógica de dados.
+-   **Gerenciamento de Estado com Hooks:** O estado da aplicação é gerenciado de forma local e eficiente dentro dos componentes, utilizando o poder dos Hooks nativos do React.
+-   **Experiência do Usuário (UX):** Foco em fornecer feedback claro e imediato ao usuário através de notificações, badges de status e animações, tornando a aplicação mais intuitiva.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🚀 Como Instalar e Rodar o Projeto
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Siga os passos abaixo para ter o frontend rodando em sua máquina local.
 
-## Learn More
+### Pré-requisitos
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+-   **Backend Ativo:** O backend do ZapFlow **deve estar rodando** para que o frontend possa se comunicar com a API. Siga as instruções de instalação no **[README do backend](https://github.com/lucaslirah/zapflow_project)**.
+-   [Node.js](https://nodejs.org/) (v16 ou superior)
+-   [NPM](https://www.npmjs.com/) ou [Yarn](https://yarnpkg.com/)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Passos para Instalação
 
-### Code Splitting
+1.  **Clone o repositório:**
+    ```bash
+    git clone [https://github.com/lucaslirah/zapflow-frontend.git](https://github.com/lucaslirah/zapflow-frontend.git)
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+2.  **Navegue para a pasta do projeto:**
+    ```bash
+    cd zapflow-frontend
+    ```
 
-### Analyzing the Bundle Size
+3.  **Instale as dependências:**
+    ```bash
+    npm install
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+4.  **Configure as variáveis de ambiente:**
+    -   Copie o arquivo `.env.example` para `.env`.
+    -   Verifique se a variável `REACT_APP_API_URL` aponta para o endereço onde seu backend está rodando (por padrão, `http://localhost:3001`).
 
-### Making a Progressive Web App
+    ```bash
+    cp .env.example .env
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+5.  **Inicie a aplicação:**
+    ```bash
+    npm start
+    ```
 
-### Advanced Configuration
+✅ Pronto! A aplicação React será aberta no seu navegador, geralmente em `http://localhost:3000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 📜 Licença
 
-### Deployment
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+Feito com ❤️ por **Lucas Lira**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/lucaslirah)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/lucas-lira-dev/)
