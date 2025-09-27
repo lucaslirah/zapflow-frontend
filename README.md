@@ -8,7 +8,7 @@
 Uma interface web moderna e reativa, construída com React.js, para consumir a API do ZapFlow e gerenciar sessões do WhatsApp de forma visual e intuitiva.
 
 > **Este é o repositório do Frontend.** O Backend (API) que esta aplicação consome está em um repositório separado.
->
+
 > ➡️ **[Acesse o repositório do Backend aqui](https://github.com/lucaslirah/zapflow_project)**
 
 ---
@@ -17,7 +17,8 @@ Uma interface web moderna e reativa, construída com React.js, para consumir a A
 
 A interface do ZapFlow Dashboard oferece um painel de controle centralizado para todas as operações de automação do WhatsApp, com feedback visual em tempo real para o usuário.
 
-![Demonstração do ZapFlow](https://i.imgur.com/3ffbea.png)
+![Animação_zapflow](https://github.com/user-attachments/assets/8678018b-e695-4da6-b877-e056395b0352)
+
 
 > A aplicação foi desenvolvida com **React.js** e se comunica com um backend robusto em **Node.js**, que persiste os dados em um banco de dados **PostgreSQL** na **AWS RDS**, garantindo alta performance e escalabilidade.
 
